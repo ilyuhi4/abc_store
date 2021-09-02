@@ -1,12 +1,15 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Item List</title>
-    </head>
-    <body>
-    {{ title }} <br>
+{% extends 'stockmgmt/home.html' %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block header %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
     {% for instance in queryset %}
         {{ instance.id }}, {{ instance.category }}, {{ instance.item_name }}, {{ instance.quantity }} <br>
     {% endfor %}
-    </body>
-</html>
+{% endblock %}
