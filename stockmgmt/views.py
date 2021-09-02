@@ -6,7 +6,8 @@ from .forms import StockCreateForm
 # Create your views here.
 def home(request):
     title = 'Welcome! This is HomePage!'
-    context = {'title': title}
+    context = {'title': title,
+               'text': 'Greetings at HomePage!'}
     return render(request, 'stockmgmt/home.html', context)
 
 

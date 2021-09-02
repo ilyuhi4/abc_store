@@ -9,7 +9,7 @@ I was about using:
 4. Base template extension -done
 5. Bootstrap using by CDN - done
 6. Using CrispyForms - done
-7. Create navigation menu - now
+7. Include navbar in template and create it (lazy URL) - done
 8. Output list of objects in template 
 9. Make search form: query objects from DB
 10. Using validation and prevent duplicate (normalize)
