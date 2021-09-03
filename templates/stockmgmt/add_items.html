@@ -11,9 +11,9 @@
 {% endblock %}
 
 {% block content %}
-        <form method="POST" action="">
-            {% csrf_token %}
-            {{ form|crispy }}
-            <input type="submit" value="Save"/>
-        </form>
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input type="submit" value="Save"/>
+    </form>
 {% endblock %}

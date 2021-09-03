@@ -1,4 +1,5 @@
 {% extends 'stockmgmt/home.html' %}
+{% load crispy_forms_tags %}
 
 {% block title %}
     {{ title }}
@@ -9,6 +10,12 @@
 {% endblock %}
 
 {% block content %}
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input type="submit" value="search"/>
+    </form>
+    <br>
     <div class="display_table">
         <table class='table'>
             <thead>
