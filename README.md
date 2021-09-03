@@ -10,7 +10,7 @@ I was about using:
 5. Bootstrap using by CDN - done
 6. Using CrispyForms - done
 7. Include navbar in template and create it (lazy URL) - done
-8. Output list of objects in template 
+8. Output list of objects in template table with CSS - done
 9. Make search form: query objects from DB
 10. Using validation and prevent duplicate (normalize)
 11. Updating data 

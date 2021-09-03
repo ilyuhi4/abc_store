@@ -42,10 +42,10 @@
 {% include 'stockmgmt/navbar.html' %}
 <main role="main" class="container">
     <div class="jumbotron">
-        <h1>{% block header %}
+        <div class="header">{% block header %}
             {{ title }}
         {% endblock %}
-        </h1>
+        </div>
         {% block content %}
             {{ text }}
         {% endblock %}

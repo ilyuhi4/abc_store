@@ -9,7 +9,24 @@
 {% endblock %}
 
 {% block content %}
-    {% for instance in queryset %}
-        {{ instance.id }}, {{ instance.category }}, {{ instance.item_name }}, {{ instance.quantity }} <br>
-    {% endfor %}
+    <div class="display_table">
+        <table class='table'>
+            <thead>
+            <tr>
+                <th>COUNT</th>
+                <th>CATEGORY</th>
+                <th>ITEM NAME</th>
+                <th>QUANTITY IN STORE</th>
+            </tr>
+            </thead>
+            {% for instance in queryset %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ instance.category }}</td>
+                    <td>{{ instance.item_name }}</td>
+                    <td>{{ instance.quantity }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
 {% endblock %}
