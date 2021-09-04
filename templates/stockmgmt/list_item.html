@@ -1,5 +1,6 @@
 {% extends 'stockmgmt/home.html' %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block title %}
     {{ title }}
@@ -13,7 +14,7 @@
     <form method="POST" action="">
         {% csrf_token %}
         {{ form|crispy }}
-        <input type="submit" value="search"/>
+        <input type="submit" value="Search"/>
     </form>
     <br>
     <div class="display_table">
@@ -24,6 +25,7 @@
                 <th>CATEGORY</th>
                 <th>ITEM NAME</th>
                 <th>QUANTITY IN STORE</th>
+                <th>Delete</th>
             </tr>
             </thead>
             {% for instance in queryset %}
@@ -33,6 +35,11 @@
                     <td><a href="{% url 'update_items' instance.id %}">
                         {{ instance.item_name }}</a></td>
                     <td>{{ instance.quantity }}</td>
+                    <td>
+                        <a href="{% url 'delete_items' instance.id %}">
+                            <img src="{% static 'stockmgmt/img/trash.png' %}" style=width:20px;height:20px;>
+                        </a>
+                    </td>
                 </tr>
             {% endfor %}
         </table>
