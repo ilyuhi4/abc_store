@@ -14,10 +14,11 @@ I was about using:
 9. Make search form: query objects from DB on list ims page - done
 10. Using validation and prevent duplicate (normalize) - done
 11. Updating data with form and url form list - done 
-12. Deleting data with confirmation
-13. Using choice field
-14. Foreign field creation
-15. Export data to xls or csv
-16. Messages and notification
-17. Using datefield
-18. Detail page of item
+12. Deleting data with confirmation - done
+13. Using choice field - passed
+14. Foreign field for Category  - done
+15.  # TODO: ==="Add category" function and menu item
+16. Export data to csv - done
+17. Messages and notification - working
+18. Using datefield
+19. Detail page of item
