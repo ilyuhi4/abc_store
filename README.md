@@ -19,6 +19,6 @@ I was about using:
 14. Foreign field for Category  - done
 15.  # TODO: ==="Add category" function and menu item
 16. Export data to csv - done
-17. Messages and notification - working
+17. Messages and notification - done
 18. Using datefield
 19. Detail page of item
