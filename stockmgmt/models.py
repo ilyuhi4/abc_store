@@ -21,6 +21,7 @@ class Stock(models.Model):
     created_by = models.CharField(max_length=50, blank=True, null=True)
     reorder_level = models.IntegerField(default=0, blank=True, null=True)
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
+    time_stamp = models.DateTimeField(auto_now=False, auto_now_add=True)
     export_to_CSV = models.BooleanField(default=False)
 
     def __str__(self):

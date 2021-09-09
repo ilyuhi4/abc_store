@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Stock
+from django.views.generic import ListView
+from .models import Stock, Category
 from .forms import (StockCreateForm,
                     StockSearchForm,
                     StockUpdateForm,
@@ -53,7 +54,7 @@ def stock_detail(request, pk):
     context = {
         "title": queryset.item_name,
         "queryset": queryset,
-        }
+    }
     return render(request, "stock_detail.html", context)
 
 
@@ -107,3 +108,13 @@ def add_category(request):
         'title': 'Add Category'
     }
     return render(request, 'stockmgmt/add_items.html', context)
+
+
+class CategoryListView(ListView):
+    model = Category
+    fields = ['name']
+    context_object_name = 'queryset'
+    template_name = 'stockmgmt/list_category.html'
+    extra_context = {
+        'title': 'Category list'
+    }
