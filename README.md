@@ -23,3 +23,4 @@ I was about using:
 18. Using datefield - not sure about need this
 19. Detail page of item - done
 20. Category list class based view and menu item - done
+21. Updating quantity from receive/issue form - done

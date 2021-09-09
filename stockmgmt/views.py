@@ -4,7 +4,9 @@ from .models import Stock, Category
 from .forms import (StockCreateForm,
                     StockSearchForm,
                     StockUpdateForm,
-                    CategoryCreateForm)
+                    CategoryCreateForm,
+                    IssueForm,
+                    ReceiveForm)
 from django.http import HttpResponse
 import csv
 from django.contrib import messages
@@ -32,7 +34,7 @@ def list_item(request):
             category_id=form['category'].value(),
             item_name__icontains=form['item_name'].value()
         )
-        if form['export_to_CSV'].value() == True:
+        if form['export_to_CSV'].value():
             response = HttpResponse(content_type='text/csv')
             response['Content-Disposition'] = 'attachment; filename="List of stock.csv"'
             writer = csv.writer(response)
@@ -55,7 +57,7 @@ def stock_detail(request, pk):
         "title": queryset.item_name,
         "queryset": queryset,
     }
-    return render(request, "stock_detail.html", context)
+    return render(request, "stockmgmt/stock_detail.html", context)
 
 
 def add_items(request):
@@ -80,7 +82,8 @@ def update_items(request, pk):
             form.save()
             return redirect('/list_items')
     context = {
-        'form': form
+        'form': form,
+        'title': 'Update item'
     }
     return render(request, 'stockmgmt/add_items.html', context)
 
@@ -118,3 +121,48 @@ class CategoryListView(ListView):
     extra_context = {
         'title': 'Category list'
     }
+
+
+def issue_items(request, pk):
+    queryset = Stock.objects.get(id=pk)
+    form = IssueForm(request.POST or None, instance=queryset)
+    if form.is_valid():
+        instance = form.save(commit=False)
+        instance.quantity -= instance.issue_quantity
+        instance.issue_by = str(request.user)
+        messages.success(request,
+                         "Issues SUCCESSFULLY. " +
+                         str(instance.quantity) + " " +
+                         str(instance.item.name) +
+                         "s now left in Store")
+        instance.save()
+        return redirect('/stock_detail/' + str(instance.id))
+
+    context = {
+        "title": 'Issue' + str(queryset.item_name),
+        "queryset": queryset,
+        "form": form,
+        "username": 'Issue by: ' + str(request.user)
+    }
+    return render(request, 'stockmgmt/add_items.html', context=context)
+
+
+def receive_items(request, pk):
+    queryset = Stock.objects.get(id=pk)
+    form = ReceiveForm(request.POST or None, instance=queryset)
+    if form.is_valid():
+        instance = form.save(commit=False)
+        instance.quantity += instance.receive_quantity
+        instance.save()
+        messages.success(request,
+                         "Received SUCCESSFULLY. " +
+                         str(instance.quantity) + " " +
+                         str(instance.item_name) +
+                         "s now in Store")
+        return redirect('/stock_detail/' + str(instance.id))
+    context = {
+        "title": "Received " + str(queryset.item_name),
+        "form": form,
+        "username": "received by: " + str(request.user)
+    }
+    return render(request, 'stockmgmt/add_items.html', context=context)
