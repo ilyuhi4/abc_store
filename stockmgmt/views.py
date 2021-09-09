@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import Stock
-from .forms import StockCreateForm, StockSearchForm, StockUpdateForm
+from .forms import (StockCreateForm,
+                    StockSearchForm,
+                    StockUpdateForm,
+                    CategoryCreateForm)
 from django.http import HttpResponse
 import csv
 from django.contrib import messages
@@ -45,6 +48,15 @@ def list_item(request):
     return render(request, 'stockmgmt/list_item.html', context)
 
 
+def stock_detail(request, pk):
+    queryset = Stock.objects.get(id=pk)
+    context = {
+        "title": queryset.item_name,
+        "queryset": queryset,
+        }
+    return render(request, "stock_detail.html", context)
+
+
 def add_items(request):
     form = StockCreateForm(request.POST or None)
     if form.is_valid():
@@ -82,3 +94,16 @@ def delete_items(request, pk):
         messages.success(request, 'Successfully Deleted')
         return redirect('/list_items')
     return render(request, 'stockmgmt/delete_items.html', context)
+
+
+def add_category(request):
+    form = CategoryCreateForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        messages.success(request, 'Successfully Saved')
+        return redirect('list_items')
+    context = {
+        'form': form,
+        'title': 'Add Category'
+    }
+    return render(request, 'stockmgmt/add_items.html', context)

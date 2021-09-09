@@ -1,0 +1,19 @@
+{% extends 'stockmgmt/home.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block header %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input type="submit" value="Save"/>
+    </form>
+{% endblock %}
