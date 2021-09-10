@@ -10,6 +10,7 @@ from .forms import (StockCreateForm,
 from django.http import HttpResponse
 import csv
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -60,6 +61,7 @@ def stock_detail(request, pk):
     return render(request, "stockmgmt/stock_detail.html", context)
 
 
+@login_required
 def add_items(request):
     form = StockCreateForm(request.POST or None)
     if form.is_valid():
@@ -73,6 +75,7 @@ def add_items(request):
     return render(request, 'stockmgmt/add_items.html', context)
 
 
+@login_required
 def update_items(request, pk):
     queryset = Stock.objects.get(id=pk)
     form = StockUpdateForm(instance=queryset)
@@ -88,6 +91,7 @@ def update_items(request, pk):
     return render(request, 'stockmgmt/add_items.html', context)
 
 
+@login_required
 def delete_items(request, pk):
     context = {
         'title': 'Delete Item'
@@ -100,6 +104,7 @@ def delete_items(request, pk):
     return render(request, 'stockmgmt/delete_items.html', context)
 
 
+@login_required
 def add_category(request):
     form = CategoryCreateForm(request.POST or None)
     if form.is_valid():
@@ -123,6 +128,7 @@ class CategoryListView(ListView):
     }
 
 
+@login_required
 def issue_items(request, pk):
     queryset = Stock.objects.get(id=pk)
     form = IssueForm(request.POST or None, instance=queryset)
@@ -147,6 +153,7 @@ def issue_items(request, pk):
     return render(request, 'stockmgmt/add_items.html', context=context)
 
 
+@login_required
 def receive_items(request, pk):
     queryset = Stock.objects.get(id=pk)
     form = ReceiveForm(request.POST or None, instance=queryset)
@@ -168,6 +175,7 @@ def receive_items(request, pk):
     return render(request, 'stockmgmt/add_items.html', context=context)
 
 
+@login_required
 def reorder_level_edit(request, pk):
     queryset = Stock.objects.get(id=pk)
     form = ReorderLevelEditForm(request.POST or None, instance=queryset)

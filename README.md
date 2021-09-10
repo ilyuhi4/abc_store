@@ -26,4 +26,4 @@ I was about using:
 21. Updating quantity from receive/issue form - done
 22. Create reorder level edit form, view, url - done
 23. Create reorder level warning and editing form - done
-24. Registration using Django Redux
+24. Authentication users using Django Redux - done
