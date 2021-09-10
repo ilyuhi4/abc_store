@@ -11,10 +11,15 @@
 {% endblock %}
 
 {% block content %}
-
-    <form method="POST" action="">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <input type="submit" value="Save"/>
-    </form>
+<div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+            <form method="POST" action="">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <input class="btn btn-primary btn-block" type="submit" value="Save"/>
+            </form>
+    </div>
+    <div class="col-sm-4"></div>
+</div>
 {% endblock %}

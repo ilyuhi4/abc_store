@@ -2,7 +2,9 @@ body {
     background-color: #34eb6b;
 }
 
-.table{
+
+
+.table {
 	font-size: 13px;
 	text-align: center;
 	width: 95%;
@@ -29,7 +31,7 @@ th {
 	padding-left: 5px;
 	padding-right: 5px;
 	padding-bottom: 20px;
-	box-shadow: 12px 12px 20px 6px #2e6da4;
+	box-shadow: 12px 12px 10px 6px #2e6da4;
 }
 
 .header {
@@ -43,14 +45,6 @@ th {
     font-weight: bolder;
 }
 
-.display_table{
-	border-bottom-right-radius: 20px;
-	/*border-bottom-left-radius: 20px;*/
-	padding-left: 5px;
-	padding-right: 5px;
-	padding-bottom: 20px;
-	box-shadow: 12px 12px 20px 6px #2e6da4;
-}
 
 .header {
     font-family: helvetica;
@@ -70,3 +64,4 @@ th {
     box-shadow: 12px 12px 12px #e61c66;
     text-align: center;
 }
+
