@@ -28,5 +28,6 @@ urlpatterns = [
     path('stock_detail/<int:pk>', views.stock_detail, name='stock_detail'),
     path('category_list/', views.CategoryListView.as_view(), name='category_list'),
     path('issue_items/<str:pk>', views.issue_items, name='issue_items'),
-    path('receive_items/<str:pk>/', views.receive_items, name='receive_items')
+    path('receive_items/<str:pk>/', views.receive_items, name='receive_items'),
+    path('reorder_level/<str:pk>/', views.reorder_level_edit, name='reorder_level'),
 ]

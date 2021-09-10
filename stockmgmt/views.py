@@ -6,7 +6,7 @@ from .forms import (StockCreateForm,
                     StockUpdateForm,
                     CategoryCreateForm,
                     IssueForm,
-                    ReceiveForm)
+                    ReceiveForm, ReorderLevelEditForm)
 from django.http import HttpResponse
 import csv
 from django.contrib import messages
@@ -166,3 +166,22 @@ def receive_items(request, pk):
         "username": "received by: " + str(request.user)
     }
     return render(request, 'stockmgmt/add_items.html', context=context)
+
+
+def reorder_level_edit(request, pk):
+    queryset = Stock.objects.get(id=pk)
+    form = ReorderLevelEditForm(request.POST or None, instance=queryset)
+    if form.is_valid():
+        instance = form.save()
+        instance.save()
+        messages.success(request,
+                         "Reorder level for " +
+                         str(instance.item_name) +
+                         " is updated to " +
+                         str(instance.reorder_level))
+        return redirect('/list_items')
+    context = {
+        "instance": queryset,
+        "form": form
+    }
+    return render(request, 'stockmgmt/add_items.html', context)
