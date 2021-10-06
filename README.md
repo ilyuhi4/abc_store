@@ -17,7 +17,7 @@ I was about using:
 12. Deleting data with confirmation - done
 13. Using choice field - passed
 14. Foreign field for Category  - done
-15. # TODO: ==="Add category" function and menu item - DONE with dup checking
+15. "Add category" function and menu item - DONE with dup checking
 16. Export data to csv - done
 17. Messages and notification - done
 18. Using DateTimeField - not sure about need this
